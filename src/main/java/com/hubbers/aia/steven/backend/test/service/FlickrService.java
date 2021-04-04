@@ -58,7 +58,11 @@ public class FlickrService {
 					.map(flickrAssembler::toModel)
 					.collect(Collectors.toList());
 			
-			responseEntity = CollectionModel.of(items, linkTo(methodOn(FlickrController.class).search(null, null, null, null)).withSelfRel().expand());
+			responseEntity = CollectionModel.of(items, 
+					linkTo(methodOn(FlickrController.class).search(null, null, null, null)).withSelfRel().expand(),
+					linkTo(methodOn(FlickrController.class).searchAndStore(null, null, null, null)).withSelfRel().expand(),
+					linkTo(methodOn(FlickrController.class).clean(null, null)).withSelfRel().expand()
+				);
 			
 			if (isStore) {
 				storeFlickrData(flickr);
@@ -158,13 +162,15 @@ public class FlickrService {
 	public void deleteFlickrData(String authorId) {
 		
 		try {
-			String[] authorIdArray = authorId.split(",");
-			if (authorIdArray.length > 1) {
-				for (String author : authorIdArray) {
+			if (authorId != null) {
+				String[] authorIdArray = authorId.split(",");
+				if (authorIdArray.length > 1) {
+					for (String author : authorIdArray) {
+						flickrRepository.deleteByAuthorId(authorId);
+					}
+				} else if (authorId != null) {
 					flickrRepository.deleteByAuthorId(authorId);
 				}
-			} else if (authorId != null) {
-				flickrRepository.deleteByAuthorId(authorId);
 			} else {
 				flickrRepository.deleteAll();
 			}

@@ -16,7 +16,9 @@ public class FlickrAssembler implements RepresentationModelAssembler<Items, Enti
 	public EntityModel<Items> toModel(Items items) {
 		
 		return EntityModel.of(items,
-				linkTo(methodOn(FlickrController.class).search(items.getAuthorId(), null, items.getTags(), null)).withSelfRel().expand(),
-				linkTo(methodOn(FlickrController.class).search(null, null, null, null)).withRel("flickrFeed").expand());
+				linkTo(methodOn(FlickrController.class).search(items.getAuthorId(), null, null, null)).withSelfRel().expand(),
+				linkTo(methodOn(FlickrController.class).searchAndStore(items.getAuthorId(), null, null, null)).withRel("SearchAndInsert").expand(),
+				linkTo(methodOn(FlickrController.class).search(null, null, null, null)).withRel("SearchAll").expand(),
+				linkTo(methodOn(FlickrController.class).clean(items.getAuthorId(), null)).withRel("Clean").expand());
 	}
 }

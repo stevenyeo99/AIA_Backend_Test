@@ -64,7 +64,7 @@ public class FlickrController {
 	}
 	
 	@DeleteMapping("/clean")
-	public ResponseEntity<?> deleteFlickr(@RequestParam(value = "id", required = false) String id,
+	public ResponseEntity<?> clean(@RequestParam(value = "id", required = false) String id,
 			@RequestParam(value = "ids", required = false) String ids) {
 		
 		String deleteId = null;

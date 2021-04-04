@@ -154,7 +154,7 @@ public class FlickrService {
 	public void deleteFlickrData(String authorId) {
 		
 		try {
-			if (authorId != null) {
+			if (authorId != null && !authorId.isEmpty()) {
 				String[] authorIdArray = authorId.split(",");
 				if (authorIdArray.length > 1) {
 					for (String author : authorIdArray) {

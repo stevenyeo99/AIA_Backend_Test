@@ -127,6 +127,7 @@ public class Items {
 		this.authorId = authorId;
 	}
 
+	@Type(type="text")
 	public String getTags() {
 		return tags;
 	}

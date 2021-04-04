@@ -158,7 +158,7 @@ public class FlickrService {
 				String[] authorIdArray = authorId.split(",");
 				if (authorIdArray.length > 1) {
 					for (String author : authorIdArray) {
-						flickrRepository.deleteByAuthorId(authorId);
+						flickrRepository.deleteByAuthorId(author);
 					}
 				} else if (authorId != null) {
 					flickrRepository.deleteByAuthorId(authorId);

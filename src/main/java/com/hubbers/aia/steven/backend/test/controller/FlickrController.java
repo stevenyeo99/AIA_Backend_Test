@@ -91,7 +91,7 @@ public class FlickrController {
 	 * @return
 	 */
 	private SearchParam getSearchParam(String id, String ids, String tags, String tagMode) {
-		SearchParam searchParam = new SearchParam(id, ids, tags, tagMode, null, null);
+		SearchParam searchParam = new SearchParam(id, ids, tags, tagMode);
 				
 		return searchParam;
 	}

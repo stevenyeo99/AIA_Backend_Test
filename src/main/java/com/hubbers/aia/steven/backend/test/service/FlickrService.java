@@ -84,26 +84,18 @@ public class FlickrService {
 		if (searchParam != null) {
 			stringBuilder = new StringBuilder();
 			
-			if (searchParam.getIds() != null) {
+			if (searchParam.getIds() != null && !searchParam.getIds().isEmpty()) {
 				stringBuilder.append("&ids=" + searchParam.getIds());
-			} else if (searchParam.getId() != null) {
+			} else if (searchParam.getId() != null && !searchParam.getId().isEmpty()) {
 				stringBuilder.append("&id=" + searchParam.getId());
 			}
 			
-			if (searchParam.getTags() != null) {
+			if (searchParam.getTags() != null && !searchParam.getTags().isEmpty()) {
 				stringBuilder.append("&tags=" + searchParam.getTags());
 			}
 			
-			if (searchParam.getTagmode() != null) {
+			if (searchParam.getTagmode() != null && !searchParam.getTagmode().isEmpty()) {
 				stringBuilder.append("&tagmode=" + searchParam.getTagmode());
-			}
-			
-			if (searchParam.getDateTaken() != null) {
-				stringBuilder.append("&dateTaken=" + searchParam.getDateTaken());
-			}
-			
-			if (searchParam.getPublishDate() != null) {
-				stringBuilder.append("&publishDate=" + searchParam.getPublishDate());
 			}
 			
 			addParam = stringBuilder.toString();

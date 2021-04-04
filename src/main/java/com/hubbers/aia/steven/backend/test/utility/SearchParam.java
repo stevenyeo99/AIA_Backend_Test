@@ -8,20 +8,16 @@ public class SearchParam {
 	private String ids;
 	private String tags;
 	private String tagmode;
-	private LocalDate publishDate;
-	private LocalDate dateTaken;
 	
 	public SearchParam() {
 		
 	}
 	
-	public SearchParam(String id, String ids, String tags, String tagmode, LocalDate publishDate, LocalDate dateTaken) {
+	public SearchParam(String id, String ids, String tags, String tagmode) {
 		this.id = id;
 		this.ids = ids;
 		this.tags = tags;
 		this.tagmode = tagmode;
-		this.publishDate = publishDate;
-		this.dateTaken = dateTaken;
 	}
 
 	public String getId() {
@@ -54,21 +50,5 @@ public class SearchParam {
 
 	public void setTagmode(String tagmode) {
 		this.tagmode = tagmode;
-	}
-
-	public LocalDate getPublishDate() {
-		return publishDate;
-	}
-
-	public void setPublishDate(LocalDate publishDate) {
-		this.publishDate = publishDate;
-	}
-
-	public LocalDate getDateTaken() {
-		return dateTaken;
-	}
-
-	public void setDateTaken(LocalDate dateTaken) {
-		this.dateTaken = dateTaken;
 	}
 }

@@ -1,21 +1,19 @@
 package com.hubbers.aia.steven.backend.test.advice;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.hubbers.aia.steven.backend.test.exception.FlickrNotFoundException;
+import com.hubbers.aia.steven.backend.test.utility.ResponseStatus;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class FlickrNotFoundAdvice {
 	
-	@ResponseBody
 	@ExceptionHandler(FlickrNotFoundException.class)
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	public String flickrNotFoundHandler(FlickrNotFoundException exception) {
+	public ResponseEntity<?> flickrNotFoundHandler(FlickrNotFoundException exception) {
 		
-		return exception.getMessage();
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ResponseStatus(exception.getMessage()));
 	}
 }

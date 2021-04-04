@@ -1,13 +1,19 @@
 package com.hubbers.aia.steven.backend.test.model;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.Type;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
@@ -17,7 +23,7 @@ public class Items {
 	private String title;
 	private String link;
 	private Media media;
-	private LocalDateTime dateTaken;
+	private ZonedDateTime dateTaken;
 	private String description;
 	private LocalDateTime published;
 	private String author;
@@ -28,7 +34,7 @@ public class Items {
 		
 	}
 	
-	public Items(String title, String link, Media media, LocalDateTime dateTaken, String description, LocalDateTime published, String author,
+	public Items(String title, String link, Media media, ZonedDateTime dateTaken, String description, LocalDateTime published, String author,
 			String authorId, String tags) {
 		this.title = title;
 		this.link = link;
@@ -41,6 +47,7 @@ public class Items {
 		this.tags = tags;
 	}
 
+	@JsonIgnore
 	@Id
 	@GeneratedValue
 	public Long getItemId() {
@@ -67,23 +74,26 @@ public class Items {
 		this.link = link;
 	}
 	
-	@OneToOne(mappedBy = "items")
+	@OneToOne(mappedBy = "items", cascade = CascadeType.ALL)
 	public Media getMedia() {
 		return media;
 	}
 
+	@JsonProperty("media")
 	public void setMedia(Media media) {
 		this.media = media;
 	}
 
-	public LocalDateTime getDateTaken() {
+	public ZonedDateTime getDateTaken() {
 		return dateTaken;
 	}
 
-	public void setDateTaken(LocalDateTime dateTaken) {
+	@JsonProperty("date_taken")
+	public void setDateTaken(ZonedDateTime dateTaken) {
 		this.dateTaken = dateTaken;
 	}
 
+	@Type(type="text")
 	public String getDescription() {
 		return description;
 	}
@@ -112,6 +122,7 @@ public class Items {
 		return authorId;
 	}
 
+	@JsonProperty("author_id")
 	public void setAuthorId(String authorId) {
 		this.authorId = authorId;
 	}
